@@ -1,0 +1,20 @@
+page-login {
+  #body {
+    background-image: url(../assets/imgs/background.jpg);
+    background-size: cover;
+    background-repeat:no-repeat;
+
+    width:100%;
+  }
+  container{
+    z-index: -999;
+  }
+
+  #form{
+    margin-top: 150px;
+  }
+
+  #btnlogin{
+    background-color: #54dac1;
+  }
+}
