@@ -1,0 +1,78 @@
+<!--
+  Generated template for the MyprofilePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Profile</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+
+
+  <ion-card>
+
+    <ion-item>
+      <ion-avatar item-start>
+
+      </ion-avatar>
+      <h2>{{userData?.user?.username}}</h2>
+      <p>{{userData?.user?.first_name}}</p>
+      <p>{{userData?.user?.last_name}}</p>
+
+    </ion-item>
+
+    <img src="../assets/imgs/profilepic2.jpg" id="profilepic">
+
+    <ion-card-content>
+      <h2>{{userData?.position?.name}}</h2>
+      <p>Level :{{userData?.position?.level}}</p>
+    </ion-card-content>
+
+    <ion-row>
+      <ion-col>
+        <button ion-button icon-start clear small>
+          <ion-icon name="mail"></ion-icon>
+          <div>{{userData?.user?.email}}</div>
+        </button>
+      </ion-col>
+      <ion-col>
+        <button ion-button icon-start clear small>
+          <ion-icon name="call"></ion-icon>
+          <div>{{userData?.phone_number}}</div>
+        </button>
+      </ion-col>
+
+      <ion-col center text-center>
+        <ion-note>
+          {{userData?.physical_address}}
+        </ion-note>
+      </ion-col>
+    </ion-row>
+
+  </ion-card>
+
+
+
+
+
+
+  <ion-list>
+    <button ion-item  (click)="openProfilePage()">
+      Full Profile
+
+    </button>
+    <button ion-item  (click)="openDetailsPage()">
+     View More
+
+    </button>
+  </ion-list>
+
+</ion-content>

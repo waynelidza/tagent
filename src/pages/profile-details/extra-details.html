@@ -1,0 +1,46 @@
+<!--
+  Generated template for the ExtraDetailsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+
+
+<ion-content padding>
+  <button ion-button icon-start clear small (click)="closeModal()" >
+    <ion-icon name="close"></ion-icon>
+    <div>Close</div>
+  </button>
+<br>
+  <br>
+  <img src="../assets/imgs/profilepic2.jpg" id="profilepic">
+
+  <div id="details">
+      <div> ID Number :  {{userData?.id_number}} </div>
+      <div *ngIf="userData?.gender == 'M'"> Gender :  Male </div>
+      <div *ngIf="userData?.gender == 'F'"> Gender :  Female </div>
+      <div> Tax_number :  {{userData?.tax_number}} </div>
+      <div> Personal Email :  {{userData?.personal_email}} </div>
+      <div> Date of Birth :  {{userData?.birth_date}} </div>
+      <div> Day to BirthDay :  {{userData?.days_to_birthday}} </div>
+      <div> Age:  {{userData?.age}} </div>
+      <div> Race:  {{userData?.race}} </div>
+      <div> Leave Remaining Days :  {{userData?.leave_remaining}} </div>
+      <div> StartDate:  {{userData?.start_date}} </div>
+      <div> Next Review:  {{userData?.next_review}} </div>
+      <div *ngIf="userData?.end_date"> End Date  :  {{userData?.end_date}} </div>
+      <div> Year Worked :  {{userData?.years_worked}} </div>
+      <div> Github Username :  {{userData?.github_user}} </div>
+      <div *ngIf="userData?.id_document"> ID Document  :  {{userData?.id_document}} </div>
+      <div *ngIf="userData?.visa_document"> Visa Document :  {{userData?.visa_document}} </div>
+      <div *ngIf="userData?.is_employed==true"> Employed :  Yes </div>
+      <div *ngIf="userData?.is_employed==false"> Employed :  No </div>
+      <div *ngIf="userData?.is_foreigner==false"> Foreigner :  No </div>
+      <div *ngIf="userData?.is_foreigner==true"> Foreigner :  Yes </div>
+
+
+  </div>
+
+
+</ion-content>

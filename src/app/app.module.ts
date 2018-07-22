@@ -11,6 +11,10 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import {LoginPageModule} from "../pages/login/login.module";
 import { SystemServiceProvider } from '../providers/system-service/system-service';
 import { HttpClientModule } from '@angular/common/http';
+import {DashBoardPageModule} from "../pages/dash-board/dash-board.module";
+import {MyprofilePageModule} from "../pages/myprofile/myprofile.module";
+import {DetailsPageModule} from "../pages/details/details.module";
+import {ExtraDetailsPageModule} from "../pages/profile-details/extra-details.module";
 
 @NgModule({
   declarations: [
@@ -23,6 +27,10 @@ import { HttpClientModule } from '@angular/common/http';
     LoginPageModule,
     HttpClientModule,
     IonicModule.forRoot(MyApp),
+    DashBoardPageModule,
+    MyprofilePageModule,
+    ExtraDetailsPageModule,
+    DetailsPageModule,
     IonicStorageModule.forRoot({
       name: '__mydb',
       driverOrder: ['indexeddb', 'sqlite', 'websql']
