@@ -55,7 +55,10 @@ export class LoginPage {
             response => {
             
                     if(response.token){
-                      this.navCtrl.push(HomePage);
+                      this.storage.set('Token',response.token)
+                    this.getUserDetails();
+                     
+
                     }else{
                       this.alertmessage = " wrong Username or password";
                       this.showAlert();
@@ -95,5 +98,57 @@ export class LoginPage {
     });
     alert.present();
   }
+
+  setToken(token :string){
+
+    this.storage.set('token',token)
+  }
+
+getUserDetails(){
+  let loader = this.loadingCtrl.create({
+    content: 'please wait...',
+  });
+
+
+  // loader.present().then(() => {
+    this.Service.getUserDetails()
+      .subscribe(
+        response => {
+          console.log(response);
+                if(response){
+                  this.navCtrl.push(HomePage);
+                  console.log(response);
+
+                }else{
+                  this.alertmessage = " wrong Username or password";
+                  this.showAlert();
+                }
+        
+            // this.storage.set('userID', data._id);
+            // this.storage.set('cellphonenumber', data.cellphonenumber);
+            // this.storage.set('username', data.name);
+
+
+        
+
+      
+        },
+        error => {
+          if (error.status === 400) {
+
+            this.alertmessage = " wrong username or password";
+            this.showAlert();
+          }
+          if (error.status === 0) {
+            this.alertmessage = "not internet connection or server is down";
+            this.showAlert();
+          }
+        });
+    loader.dismiss();
+  });
+
+
+
+}
 
 }
