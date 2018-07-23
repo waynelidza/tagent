@@ -15,6 +15,7 @@ import {DashBoardPageModule} from "../pages/dash-board/dash-board.module";
 import {MyprofilePageModule} from "../pages/myprofile/myprofile.module";
 import {DetailsPageModule} from "../pages/details/details.module";
 import {ExtraDetailsPageModule} from "../pages/profile-details/extra-details.module";
+import {ChartsModule} from "ng2-charts";
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import {ExtraDetailsPageModule} from "../pages/profile-details/extra-details.mod
     DashBoardPageModule,
     MyprofilePageModule,
     ExtraDetailsPageModule,
+    ChartsModule,
     DetailsPageModule,
     IonicStorageModule.forRoot({
       name: '__mydb',

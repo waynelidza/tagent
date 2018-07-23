@@ -1,4 +1,4 @@
-declare module namespace {
+declare module Employee {
 
   export interface User {
     id: number;

@@ -89,5 +89,21 @@ getUserProfile(){
       return user;
     });
 }
+  getEmployeeDeatils(){
 
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': 'Token 2a3d1af2f3f6d1cddaa3012c1c465fcbdffa3678',
+
+      })
+    };
+    return this.http.get<any>('http://staging.tangent.tngnt.co/api/employee/',httpOptions)
+      .map(user => {
+
+
+
+        return user;
+      });
+  }
 }
