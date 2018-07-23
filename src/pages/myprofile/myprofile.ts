@@ -27,7 +27,7 @@ export class MyprofilePage {
   constructor(public loadingCtrl: LoadingController, public navCtrl: NavController, public navParams: NavParams  , public Service: SystemServiceProvider,public alertCtrl: AlertController,public modalCtrl: ModalController ) {
   }
 
-  ionViewDidLoad() {
+  ionViewDidEnter() {
     console.log('ionViewDidLoad MyprofilePage');
     this.displayUserDetails();
   }

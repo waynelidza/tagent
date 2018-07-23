@@ -38,7 +38,10 @@
         </ion-card-header>
         <ion-card-content>
           <div>Salary :  {{details.salary}} </div>
-          <div> Type  :  {{details.type}} </div>
+          <div *ngIf="details?.type == 'P'"> Performance Increase </div>
+          <div *ngIf="details?.type == 'S'"> Starting Salary </div>
+          <div *ngIf="details?.type == 'A'"> Annual Increase</div>
+
         </ion-card-content>
       </ion-card>
     </ion-list>
@@ -46,7 +49,7 @@
     <ion-list *ngSwitchCase="'nextofKinDetails'">
       <ion-card *ngFor = "let details of userData?.employee_next_of_kin" style="background-color: #DCDCDC">
         <ion-card-header >
-         Name : {{details.name}}
+          {{details.name}}
         </ion-card-header>
         <ion-card-content>
           <div> Relationship  :  {{details.relationship}} </div>

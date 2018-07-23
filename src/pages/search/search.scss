@@ -1,0 +1,20 @@
+page-search {
+  #profilepic{
+    border-radius: 50%;
+    display: block;
+    margin-left: 75%;
+    margin-right: auto;
+    width: 20%;
+  }
+
+  #body {
+    background-image: url(../assets/imgs/background.jpg);
+    background-size: cover;
+    background-repeat:no-repeat;
+
+    width:100%;
+  }
+  container{
+    z-index: -999;
+  }
+}

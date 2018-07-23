@@ -16,12 +16,16 @@ import {MyprofilePageModule} from "../pages/myprofile/myprofile.module";
 import {DetailsPageModule} from "../pages/details/details.module";
 import {ExtraDetailsPageModule} from "../pages/profile-details/extra-details.module";
 import {ChartsModule} from "ng2-charts";
+import {SearchPageModule} from "../pages/search/search.module";
+import {SearchPipe} from "../pipes/search/search";
+import {SortPipe} from "../pipes/sort/sort";
+
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    ListPage
+    ListPage,
   ],
   imports: [
     BrowserModule,
@@ -31,6 +35,7 @@ import {ChartsModule} from "ng2-charts";
     DashBoardPageModule,
     MyprofilePageModule,
     ExtraDetailsPageModule,
+    SearchPageModule,
     ChartsModule,
     DetailsPageModule,
     IonicStorageModule.forRoot({

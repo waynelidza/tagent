@@ -1,10 +1,12 @@
 
-  .ios, .md {
+
 
     page-dash-board {
 
       .scroll-content {
-        background-color: map-get($colors, light);
+        background-image: url(../assets/imgs/background.jpg);
+        background-size: cover;
+        background-repeat:no-repeat;
       }
 
       ion-card-header {
@@ -12,6 +14,13 @@
       }
 
     }
+    #body {
 
-  }
+
+      width:100%;
+    }
+    container{
+      z-index: -999;
+    }
+
 

@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import {IonicPage, NavController, NavParams, ViewController} from 'ionic-angular';
 import {User} from "../myprofile/user.model";
-
+import { Chart } from 'chart.js';
 /**
  * Generated class for the DetailsPage page.
  *
@@ -17,21 +17,25 @@ import {User} from "../myprofile/user.model";
 export class DetailsPage {
 
   userData :User;
-
-
   constructor(public navCtrl: NavController, public navParams: NavParams ,public viewCtrl: ViewController) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DetailsPage');
-
-
     this.userData = this.navParams.get('data');
+
+
 
   }
   closeModal() {
     this.viewCtrl.dismiss();
   }
+
+
+
+
+
+
 
 
 

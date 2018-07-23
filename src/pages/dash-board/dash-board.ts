@@ -16,6 +16,8 @@ import {SystemServiceProvider} from "../../providers/system-service/system-servi
 })
 export class DashBoardPage {
  @ViewChild('barCanvas') barCanvas;
+  @ViewChild('barCanvas2') barCanvas2;
+  @ViewChild('barCanvas3') barCanvas3;
     @ViewChild('doughnutCanvas') doughnutCanvas;
     @ViewChild('lineCanvas') lineCanvas;
     alertmessage = '';
@@ -28,8 +30,11 @@ export class DashBoardPage {
 
     }
 
-    ionViewDidLoad() {
+  ionViewDidEnter() {
  this.displayEmployeeDetails();
+
+
+
 
     }
 
@@ -56,7 +61,9 @@ export class DashBoardPage {
 
             this.data = response
            if(this.data){
-              this.displayGraphData(this.data)
+              this.displayGraphData(this.data);
+             this.displaySecondCanva(this.data);
+             this.displayBirthDayCanva(this.data);
            }
 
           },
@@ -181,6 +188,126 @@ export class DashBoardPage {
 
 
    }
+
+
+   displaySecondCanva(data :any){
+
+     var juniors = data.filter(function (el) {
+       return (el.position.level === "Junior");
+     });
+     let totalJuniors = juniors.length;
+
+     var seniors = data.filter(function (el) {
+       return (el.position.level === "Senior");
+     });
+     let totalSeniors = seniors.length;
+
+     var managers = data.filter(function (el) {
+       return (el.position.name === "Project Manager");
+     });
+     let totalManagers = managers.length;
+
+     var BackEnddevelopers = data.filter(function (el) {
+       return (el.position.name === "Back-end Developer");
+
+     });
+
+     var FrontEndevelopers = data.filter(function (el) {
+       return (el.position.name === "Front-end Developer");
+     });
+
+     var birthDays = data.filter(function (el) {
+
+       return (el.days_to_birthday<=30);
+     });
+     let totalBirthDays = birthDays.length;
+
+
+     let totalFrontEndDevelopers = FrontEndevelopers.length;
+
+     let totalBackEndDevelopers = BackEnddevelopers.length;
+
+
+     this.barChart = new Chart(this.barCanvas2.nativeElement, {
+
+       type: 'bar',
+       data: {
+         labels: ["Juniors ", "Seniors", " Project Managers","Front-end Developers","Back-end Developers"],
+         datasets: [{
+           label: '# of people',
+           data: [totalJuniors,totalSeniors,totalManagers,totalFrontEndDevelopers,totalBackEndDevelopers],
+           backgroundColor: [
+             'rgba(255, 99, 132, 0.2)',
+             'rgba(54, 162, 235, 0.2)',
+             'rgba(255, 206, 86, 0.2)',
+           ],
+           borderColor: [
+             'rgba(255,99,132,1)',
+             'rgba(54, 162, 235, 1)',
+             'rgba(255, 206, 86, 1)',
+             'rgba(75, 192, 192, 1)',
+           ],
+           borderWidth: 1
+         }]
+       },
+       options: {
+         scales: {
+           yAxes: [{
+             ticks: {
+               beginAtZero:true
+             }
+           }]
+         }
+       }
+
+     });
+
+
+   }
+
+  displayBirthDayCanva(data :any){
+    var birthDays = data.filter(function (el) {
+
+      return (el.days_to_birthday<=30);
+    });
+    let totalBirthDays = birthDays.length;
+
+
+    this.barChart = new Chart(this.barCanvas3.nativeElement, {
+
+      type: 'bar',
+      data: {
+        labels: [" Total"],
+        datasets: [{
+          label: '# of people',
+          data: [totalBirthDays],
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 206, 86, 0.2)',
+          ],
+          borderColor: [
+            'rgba(255,99,132,1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+          ],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero:true
+            }
+          }]
+        }
+      }
+
+    });
+
+  }
 
   }
 
