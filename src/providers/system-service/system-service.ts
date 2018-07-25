@@ -13,6 +13,12 @@ import {Http, RequestOptionsArgs, Response, RequestOptions, ConnectionBackend, H
 
 export class SystemServiceProvider {
  userToken = '';
+ counter = 0;
+  counter2= 0;
+  finalUrl =''
+  gender = false;
+  race = false;
+ Url = 'http://staging.tangent.tngnt.co/api/employee/?';
   constructor(public http: HttpClient,public storage: Storage) {
 
   }
@@ -109,13 +115,11 @@ getUserProfile(token : String){
       });
   }
 
-  Filter(token : String,  Userdata:any ){
-    const params = new HttpParams()
-      .set('Race', JSON.stringify(Userdata))
-
-    console.log(Userdata);
-
-
+  Filter(token : String,  Userdata:any, valuesCount: number ){
+    this.counter= 0;
+    this.counter2 =0;
+    this.gender = false;
+    this.race = false;
 
     const httpOptions = {
       headers: new HttpHeaders({
@@ -124,7 +128,53 @@ getUserProfile(token : String){
 
       })
     };
-    return this.http.get<any>( 'http://staging.tangent.tngnt.co/api/employee/', {params})
+       console.log(Userdata);
+
+       if(Userdata.gender){
+         this.counter++
+         this.gender = true;
+
+
+       }
+      if(Userdata.race){
+       this.counter++;
+        this.race = true;
+      }
+
+    if(Userdata.race ===''){
+      this.counter2++;
+    }
+
+    if(Userdata.gender ===''){
+      this.counter2++;
+    }
+
+      console.log(this.counter2);
+       if(this.counter==2){
+
+
+         this.finalUrl= `gender=${Userdata.gender}&race=${Userdata.race}`
+
+       }
+
+    if(this.counter==1){
+      if(this.race===true) {
+        this.finalUrl= `race=${Userdata.race}`
+
+
+      }
+      if(this.gender===true) {
+
+        this.finalUrl= `gender=${Userdata.gender}`
+
+
+      }
+
+
+    }
+
+
+    return this.http.get<any>(this.Url+this.finalUrl,httpOptions )
 
       .map(user => {
 

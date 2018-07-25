@@ -14,25 +14,47 @@
         <ion-option value="M">Male</ion-option>
         <ion-option value="F">Female</ion-option>
 
+
       </ion-select>
 
 
   </ion-item>
-  <!--<ion-item>-->
+  <ion-item>
 
-    <!--<ion-label>Race</ion-label>-->
-    <!--<ion-select [(ngModel)]="gaming">-->
-      <!--<ion-option value="M">Male</ion-option>-->
-      <!--<ion-option value="F">Female</ion-option>-->
-
-    <!--</ion-select>-->
-
-
-  <!--</ion-item>-->
-  <form #search="ngForm" (ngSubmit)="displayUserDetails()" id="form" >
+    <ion-label>Race</ion-label>
+    <ion-select [(ngModel)]="Params.race">
+      <ion-option value="B">Black African</ion-option>
+      <ion-option value="W">White </ion-option>
+      <ion-option value="C">Coloured</ion-option>
+      <ion-option value="N">None Dominant</ion-option>
+      <ion-option value="I">Indian or Asian </ion-option>
+    </ion-select>
 
 
-  <button ion-button color="dark">Search</button>
+  </ion-item>
+
+
+
+  <form #search="ngForm" (ngSubmit)="displayUserDetails()"  >
+
+
+  <button ion-button color="dark" style="margin-top: 10px">Search</button>
 
   </form>
+
+
+  <ion-card  *ngFor="let details of userData" style="background-color: #f9f9f9" >
+    <img src="../assets/imgs/profilepic2.jpg" id="profilepic">
+    <ion-card-header >
+      {{details.user.username}}
+    </ion-card-header>
+    <ion-card-content>
+      <div>Username :  {{details?.user?.username}} </div>
+      <div>Position :  {{details?.position?.name}} </div>
+
+      <div> Email :  {{details?.user?.email}} </div>
+      <div> Phone Number :  {{details?.phone_number}} </div>
+    </ion-card-content>
+  </ion-card>
+
 </ion-content>

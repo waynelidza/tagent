@@ -17,4 +17,18 @@ page-advanced-search {
   #btnlogin{
     background-color: #54dac1;
   }
+
+  #profilepic{
+    border-radius: 50%;
+    display: block;
+    margin-left: 75%;
+    margin-right: auto;
+    width: 20%;
+  }
+
+
+  container{
+    z-index: -999;
+  }
+
 }

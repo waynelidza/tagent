@@ -28,10 +28,11 @@ export class AdvancedSearchPage {
     email: 'string',
     position: '',
   };
-
-
+   Url = '';
+  counter=0;
+  counterboth=0;
   userData :User;
-   Params= { gender: '',race:'',username:'', email:'' ,position:''};
+   Params= { gender: '',race:'' };
   constructor(public loadingCtrl: LoadingController,public navCtrl: NavController, public navParams: NavParams ,public alertCtrl: AlertController, public storage: Storage ,public Service: SystemServiceProvider) {
   }
 
@@ -47,31 +48,54 @@ export class AdvancedSearchPage {
     });
   }
   displayUserDetails() {
+
     let loader = this.loadingCtrl.create({
       content: 'loading...',
       duration: 3000
 
     });
-    this.userDetails.gender = this.Params.gender;
+    this.counter = 0;
+
+    if (this.Params.gender === '') {
+         this.Params.gender ='';
+
+    }
+    if (this.Params.race === '') {
+        this.Params.race = ''
+
+    }
+
+    if (this.Params.gender) {
+      this.counter++;
+
+    }
+
+    if (this.Params.race) {
+      this.counter++;
+
+    }
+
+
+
+
+
+  console.log(this.counter);
 
     loader.present().then(() => {
-      this.Service.Filter(this.token,this.Params)
+      this.Service.Filter(this.token,this.Params,this.counter)
         .subscribe(
           response => {
 
             this.userData = response
 
-
-
-
+            if(response.length===0){
+             this.alertmessage='Results not Found'
+              this.showAlert();
+            }
 
           },
           error => {
-            if (error.status === 400) {
 
-              this.alertmessage = " wrong username or password";
-              this.showAlert();
-            }
             if (error.status === 0) {
               this.alertmessage = "not internet connection or server is down";
               this.showAlert();
