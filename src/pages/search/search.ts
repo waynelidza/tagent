@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {AlertController, IonicPage, LoadingController, NavController, NavParams} from 'ionic-angular';
 import {SystemServiceProvider} from "../../providers/system-service/system-service";
 import {SortPipe} from "../../pipes/sort/sort";
+import {Storage} from "@ionic/storage";
 
 /**
  * Generated class for the SearchPage page.
@@ -26,13 +27,16 @@ export class SearchPage {
   descending: boolean = false;
   order: number;
   column: string = 'name';
+   token : any ;
 
-  constructor(public loadingCtrl: LoadingController, public navCtrl: NavController, public navParams: NavParams  , public Service: SystemServiceProvider,public alertCtrl: AlertController) {
+  constructor(public loadingCtrl: LoadingController, public navCtrl: NavController, public navParams: NavParams  , public Service: SystemServiceProvider,public alertCtrl: AlertController,public storage: Storage) {
 
   }
 
   ionViewDidEnter() {
+    this.getUserToken();
     this.displayEmployeeDetails();
+
 
   }
 
@@ -53,7 +57,7 @@ export class SearchPage {
     });
 
     loader.present().then(() => {
-      this.Service.getEmployeeDeatils()
+      this.Service.getEmployeeDeatils(this.token)
         .subscribe(
           response => {
 
@@ -75,5 +79,12 @@ export class SearchPage {
   sort(){
     this.descending = !this.descending;
     this.order = this.descending ? 1 : -1;
+  }
+  getUserToken(){
+    this.storage.get('Token').then((token) => {
+
+      this.token = token;
+
+    });
   }
 }

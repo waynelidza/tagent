@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map'
 import { Storage } from '@ionic/storage';
@@ -53,13 +53,13 @@ getUserDetails() {
  this.storage.get('Token').then((token) => {
 
   this.userToken = token;
-    console.log('Your age is', token);
+
   });
 
   const httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json',
-      'Authorization': 'Token 2a3d1af2f3f6d1cddaa3012c1c465fcbdffa3678',
+      'Authorization': 'Token' +"    "   +"    "    +"  "  +this.userToken,
 
     })
   };
@@ -72,12 +72,13 @@ getUserDetails() {
     });
   }
 
-getUserProfile(){
+getUserProfile(token : String){
+
 
   const httpOptions = {
     headers: new HttpHeaders({
       'Content-Type':  'application/json',
-      'Authorization': 'Token 2a3d1af2f3f6d1cddaa3012c1c465fcbdffa3678',
+      'Authorization': 'Token' +"    "   +"    "    +"  "  +token,
 
     })
   };
@@ -89,12 +90,13 @@ getUserProfile(){
       return user;
     });
 }
-  getEmployeeDeatils(){
+  getEmployeeDeatils(token : String){
+
 
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
-        'Authorization': 'Token 2a3d1af2f3f6d1cddaa3012c1c465fcbdffa3678',
+        'Authorization': 'Token' +"    "   +"    "    +"  "  +token,
 
       })
     };
@@ -106,4 +108,35 @@ getUserProfile(){
         return user;
       });
   }
+
+  Filter(token : String,  Userdata:any ){
+    const params = new HttpParams()
+      .set('Race', JSON.stringify(Userdata))
+
+    console.log(Userdata);
+
+
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': 'Token' +"    "   +"    "    +"  "  +token,
+
+      })
+    };
+    return this.http.get<any>( 'http://staging.tangent.tngnt.co/api/employee/', {params})
+
+      .map(user => {
+
+
+
+        return user;
+      });
+
+  }
+
+
+
+
+
 }

@@ -6,6 +6,7 @@ import {User} from "./user.model";
 import {LoginPage} from "../login/login";
 import {DetailsPage} from "../details/details";
 import {ExtraDetailsPage} from "../profile-details/extra-details";
+import {Storage} from "@ionic/storage";
 
 
 /**
@@ -23,12 +24,13 @@ import {ExtraDetailsPage} from "../profile-details/extra-details";
 export class MyprofilePage {
   alertmessage = '';
   userData :User;
-
-  constructor(public loadingCtrl: LoadingController, public navCtrl: NavController, public navParams: NavParams  , public Service: SystemServiceProvider,public alertCtrl: AlertController,public modalCtrl: ModalController ) {
+  token : any;
+  constructor(public loadingCtrl: LoadingController, public navCtrl: NavController, public navParams: NavParams  , public Service: SystemServiceProvider,public alertCtrl: AlertController,public modalCtrl: ModalController ,public storage: Storage) {
   }
 
   ionViewDidEnter() {
     console.log('ionViewDidLoad MyprofilePage');
+    this.getUserToken();
     this.displayUserDetails();
   }
 
@@ -41,7 +43,7 @@ export class MyprofilePage {
     });
 
     loader.present().then(() => {
-      this.Service.getUserProfile()
+      this.Service.getUserProfile(this.token)
         .subscribe(
           response => {
 
@@ -90,5 +92,13 @@ export class MyprofilePage {
       buttons: ['OK']
     });
     alert.present();
+  }
+
+  getUserToken(){
+    this.storage.get('Token').then((token) => {
+
+      this.token = token;
+
+    });
   }
 }

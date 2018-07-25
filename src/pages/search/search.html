@@ -7,14 +7,14 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Search by Username</ion-title>
+    <ion-title>Search</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding id="body">
-  <ion-searchbar [(ngModel)]="terms" name="username" >
+  <ion-searchbar [(ngModel)]="terms" name="username" placeholder="username" >
 
 
   </ion-searchbar>
@@ -35,6 +35,7 @@
       </ion-card-content>
     </ion-card>
   </ion-list>
+
 
 
 </ion-content>

@@ -2,6 +2,7 @@ import {Component, ViewChild} from '@angular/core';
 import {AlertController, IonicPage, LoadingController, NavController, NavParams} from 'ionic-angular';
 import { Chart } from 'chart.js';
 import {SystemServiceProvider} from "../../providers/system-service/system-service";
+import {Storage} from "@ionic/storage";
 /**
  * Generated class for the DashBoardPage page.
  *
@@ -26,17 +27,19 @@ export class DashBoardPage {
     lineChart: any;
     data : any;
     totalnumberEmployee :any;
-    constructor(public loadingCtrl: LoadingController, public navCtrl: NavController, public navParams: NavParams  , public Service: SystemServiceProvider,public alertCtrl: AlertController) {
+    token : any ;
+    constructor(public loadingCtrl: LoadingController, public navCtrl: NavController, public navParams: NavParams  , public Service: SystemServiceProvider,public alertCtrl: AlertController ,public storage: Storage) {
 
     }
 
   ionViewDidEnter() {
+    this.getUserToken();
  this.displayEmployeeDetails();
 
 
-
-
     }
+
+
 
   showAlert() {
     let alert = this.alertCtrl.create({
@@ -55,7 +58,7 @@ export class DashBoardPage {
     });
 
     loader.present().then(() => {
-      this.Service.getEmployeeDeatils()
+      this.Service.getEmployeeDeatils(this.token)
         .subscribe(
           response => {
 
@@ -307,6 +310,14 @@ export class DashBoardPage {
 
     });
 
+  }
+
+  getUserToken(){
+    this.storage.get('Token').then((token) => {
+
+      this.token = token;
+
+    });
   }
 
   }

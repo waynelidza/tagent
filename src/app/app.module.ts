@@ -19,6 +19,7 @@ import {ChartsModule} from "ng2-charts";
 import {SearchPageModule} from "../pages/search/search.module";
 import {SearchPipe} from "../pipes/search/search";
 import {SortPipe} from "../pipes/sort/sort";
+import {AdvancedSearchPageModule} from "../pages/advanced-search/advanced-search.module";
 
 
 @NgModule({
@@ -37,6 +38,7 @@ import {SortPipe} from "../pipes/sort/sort";
     ExtraDetailsPageModule,
     SearchPageModule,
     ChartsModule,
+    AdvancedSearchPageModule,
     DetailsPageModule,
     IonicStorageModule.forRoot({
       name: '__mydb',
